@@ -1,7 +1,10 @@
 package unicen.edu.gpsmoviles;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -15,8 +18,37 @@ public class GPSActivity extends Activity {
 	private Button stop;
 	private Button restart;
 	private Button showVelocity;
+	static final String REQUEST = "request";
 	
+	private static final String unidades = "\n km/h";
 	
+	private BroadcastReceiver receiver = new BroadcastReceiver(){
+		@Override
+		public void onReceive(Context context, Intent i){
+			Bundle bundle = i.getExtras();
+			if (bundle!=null){
+				Float speed = bundle.getFloat(GPSService.MAXSPEED);
+				setVelocity(speed);
+			}
+		}
+	};
+	
+	private void setVelocity(Float speed){
+		StringBuffer sb = new StringBuffer();
+		sb.append(speed);
+		sb.append(unidades);
+		this.textView.setText(sb);
+	}
+	 @Override
+	  protected void onResume() {
+	    super.onResume();
+	    registerReceiver(receiver, new IntentFilter(GPSService.MESSAGE));
+	  }
+	  @Override
+	  protected void onPause() {
+	    super.onPause();
+	    unregisterReceiver(receiver);
+	  }
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -48,7 +80,9 @@ public class GPSActivity extends Activity {
 			@Override
 			public void onClick(View arg0) {
 				Log.d("debugging","click show");
-				GPSActivity.this.textView.setText("400 \n Km/h");
+				//GPSActivity.this.textView.setText("400 \n Km/h");
+				Intent i = new Intent(REQUEST);
+				sendBroadcast(i);
 			}
 		});
 		
