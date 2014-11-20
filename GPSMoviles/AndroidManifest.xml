@@ -3,6 +3,9 @@
     package="unicen.edu.gpsmoviles"
     android:versionCode="1"
     android:versionName="1.0" >
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"></uses-permission>
+	<uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
+	
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="21" />
@@ -22,8 +25,9 @@
         </activity>
         <service 
             android:name=".GPSService"
+            android:process=":service_process"
             android:label="@string/service_name"
         ></service>
     </application>
-
+	
 </manifest>

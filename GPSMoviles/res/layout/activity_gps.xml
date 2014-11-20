@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
-        android:text="@string/textView"
+        android:text="@string/initial"
         android:textSize="@dimen/abc_text_size_display_4_material" />
 
     <Button

@@ -444,12 +444,12 @@ int string abc_searchview_description_voice 0x7f0a000a
 int string abc_shareactionprovider_share_with 0x7f0a000e
 int string abc_shareactionprovider_share_with_application 0x7f0a000d
 int string app_name 0x7f0a000f
+int string initial 0x7f0a0015
 int string restartButton 0x7f0a0013
 int string service_name 0x7f0a0010
 int string showButton 0x7f0a0014
 int string startButton 0x7f0a0011
 int string stopButton 0x7f0a0012
-int string textView 0x7f0a0015
 int style AppBaseTheme 0x7f0b00eb
 int style AppTheme 0x7f0b00ec
 int style Base_TextAppearance_AppCompat 0x7f0b0098

@@ -7,6 +7,7 @@
     <string name="stopButton">STOP</string>
     <string name="restartButton">RESTART</string>
     <string name="showButton">SHOW MAX VELOCITY</string>
-    <string name="textView">0 \n Km/h</string>
+    <string name="initial">No Data</string>
+
 
 </resources>
