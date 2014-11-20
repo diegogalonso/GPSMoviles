@@ -1,0 +1,51 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="unicen.edu.gpsmoviles.GPSActivity" >
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:text="@string/textView"
+        android:textSize="@dimen/abc_text_size_display_4_material" />
+
+    <Button
+        android:id="@+id/startbt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="62dp"
+        android:layout_marginTop="43dp"
+        android:text="@string/startButton" />
+
+    <Button
+        android:id="@+id/stopbt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/startbt"
+        android:layout_alignBottom="@+id/startbt"
+        android:layout_toRightOf="@+id/startbt"
+        android:text="@string/stopButton" />
+
+    <Button
+        android:id="@+id/restartbt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/startbt"
+        android:layout_below="@+id/startbt"
+        android:text="@string/restartButton" />
+
+    <Button
+        android:id="@+id/showbt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/restartbt"
+        android:layout_below="@+id/restartbt"
+        android:text="@string/showButton" />
+
+</RelativeLayout>
