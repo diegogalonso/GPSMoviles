@@ -3,10 +3,9 @@ package unicen.edu.gpsmoviles;
 import java.text.DecimalFormat;
 
 import android.app.Activity;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
-import android.content.IntentFilter;
+import android.content.SharedPreferences;
+import android.content.SharedPreferences.Editor;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -21,41 +20,19 @@ public class GPSActivity extends Activity {
 	private Button showVelocity;
 	private StringBuffer sb = new StringBuffer();
 	private DecimalFormat df = new DecimalFormat("###.##");
-	static final String REQUEST = "request";
-	static final String RESTART = "restart";
+	static final String VELOCITY = "velocity";
+	static final String PREFERENCES = "preferences";
 	private static final String unidades = "\n m/s";
-		
-	private BroadcastReceiver receiver = new BroadcastReceiver(){
-		@Override
-		public void onReceive(Context context, Intent i){
-			Bundle bundle = i.getExtras();
-			if (bundle!=null){
-				Float speed = bundle.getFloat(GPSService.MAXSPEED);
-				setVelocity(speed);
-			}
-		}
-	};
-	private void setVelocity(Float speed){
-		sb.append(df.format(speed));
-		sb.append(unidades);
-		this.textView.setText(sb);
-		sb.delete(0, sb.length());
-	}
-	 @Override
-	  protected void onResume() {
-	    super.onResume();
-	    registerReceiver(receiver, new IntentFilter(GPSService.MESSAGE));
-	  }
-	  @Override
-	  protected void onPause() {
-	    super.onPause();
-	    unregisterReceiver(receiver);
-	  }
+	
+	SharedPreferences sharedPreferences;
+	Editor editor;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_gps);
 		textView = (TextView) findViewById(R.id.textView);
+		
 		stop = (Button) findViewById(R.id.stopbt);
 		stop.setOnClickListener(new OnClickListener(){
 			@Override
@@ -68,9 +45,10 @@ public class GPSActivity extends Activity {
 		restart.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View arg0) {
-				Intent i = new Intent(REQUEST);
-				i.putExtra(RESTART, true);
-				sendBroadcast(i);
+				sharedPreferences = getSharedPreferences(GPSActivity.PREFERENCES,MODE_MULTI_PROCESS);
+				editor = sharedPreferences.edit();
+				editor.putFloat(VELOCITY, 0f);
+				editor.commit();
 			}
 		});
 		start = (Button) findViewById(R.id.startbt);
@@ -79,17 +57,21 @@ public class GPSActivity extends Activity {
 			public void onClick(View arg0) {
 				Intent i = new Intent(GPSActivity.this,GPSService.class);
 				startService(i);
-				Intent req = new Intent(REQUEST);
-				sendBroadcast(req);
 			}
 		});
 		showVelocity = (Button) findViewById(R.id.showbt);
 		showVelocity.setOnClickListener(new OnClickListener(){
 			@Override
 			public void onClick(View arg0) {
-				Intent i = new Intent(REQUEST);
-				sendBroadcast(i);
+				sharedPreferences = getSharedPreferences(GPSActivity.PREFERENCES,MODE_MULTI_PROCESS);
+				setVelocity(sharedPreferences.getFloat(VELOCITY, 0f));
 			}
 		});	
+	}
+	private void setVelocity(Float speed){
+		sb.append(df.format(speed));
+		sb.append(unidades);
+		this.textView.setText(sb);
+		sb.delete(0, sb.length());
 	}
 }

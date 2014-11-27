@@ -1,4 +1,4 @@
-/home/helloviru/workspace/android/GPSCordova/platforms/android/ant-build/CordovaApp-debug-unaligned.apk : \
-/home/helloviru/workspace/android/GPSCordova/platforms/android/ant-build/CordovaApp.ap_ \
-/home/helloviru/workspace/android/GPSCordova/platforms/android/ant-build/classes.dex \
-/home/helloviru/workspace/android/GPSCordova/platforms/android/CordovaLib/ant-build/classes.jar \
+C:\Users\Diegote\Documents\GitHub\GPSMoviles\GPSCordova\platforms\android\ant-build\CordovaApp-debug-unaligned.apk : \
+C:\Users\Diegote\Documents\GitHub\GPSMoviles\GPSCordova\platforms\android\ant-build\CordovaApp.ap_ \
+C:\Users\Diegote\Documents\GitHub\GPSMoviles\GPSCordova\platforms\android\ant-build\classes.dex \
+C:\Users\Diegote\Documents\GitHub\GPSMoviles\GPSCordova\platforms\android\CordovaLib\ant-build\classes.jar \
